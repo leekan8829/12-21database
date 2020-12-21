@@ -5,7 +5,10 @@ exports.createProduct = async (req, res) => {
   console.log('CreateProduct', req.body);
 
   try {
-    res.json(req.body);
+    await Clothing.create(req, res).then(([rows]) => {
+      res.redirect('/crown2_89');
+    });
+    //res.json(req.body);
   } catch (err) {
     console.log(err);
   }

@@ -10,6 +10,21 @@ const Clothing = class Clothing {
     this.local_url = local_url;
   }
 
+  //create
+  static create(req, res) {
+    return db.execute(
+      'INSERT INTO clothing (id,name,cat_id,price,remote_url,local_url) VALUES (?,?,?,?,?,?)',
+      [
+        req.body.id,
+        req.body.name,
+        req.body.cat_id,
+        req.body.price,
+        req.body.remote_url,
+        req.body.local_url,
+      ]
+    );
+  }
+  //read
   static fetchHomepage() {
     return db.execute('SELECT * FROM clothing where cat_id=0;');
   }
